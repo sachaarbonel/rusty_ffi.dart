@@ -7,10 +7,10 @@ typedef NativePlayOnceFunction = void Function();
 
 main() {
   ffi.DynamicLibrary dl =
-      ffi.DynamicLibrary.open("../target/debug/libplay_once.so");
+      ffi.DynamicLibrary.open("target/debug/libplay_once.so");
   var play_once =
       dl.lookupFunction<NativeRustPlayOnceFunction, NativeRustPlayOnceFunction>(
           "play_once");
-  final Pointer<Utf8> song = Utf8.toUtf8("beep.wav").cast();
+  final Pointer<Utf8> song = Utf8.toUtf8("data/beep.wav").cast();
   play_once(song);
 }
