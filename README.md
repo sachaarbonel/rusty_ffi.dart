@@ -1,4 +1,10 @@
-A sample command-line application.
+A simple example illustrating how to use rust code in dart
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+# Prerequistes
+
+- dart (at least version 2.4)
+- rust
+
+# Getting started
+- `cargo build`
+- `dart bin/main.dart`
