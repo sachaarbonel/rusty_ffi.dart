@@ -1,4 +1,4 @@
-A simple example illustrating how to use rust code in dart
+A minimalist audio cli app to illustrate how to use Rust code in Dart using FFI
 
 # Prerequistes
 
