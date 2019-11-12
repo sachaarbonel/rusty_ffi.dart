@@ -13,10 +13,20 @@ typedef play_once_func = ffi.Void Function(ffi.Pointer<Utf8>);
 typedef PlayOnce = void Function(ffi.Pointer<Utf8>);
 
 main() {
+  ffi.DynamicLibrary dylib;
   // Open the dynamic library that contains the C function.
-  ffi.DynamicLibrary dylib = ffi.DynamicLibrary.open(Platform.isMacOS
-      ? "target/debug/libplay_once.dylib"
-      : "target/debug/libplay_once.so");
+  if (Platform.isMacOS) {
+    dylib = ffi.DynamicLibrary.open("target/debug/libplay_once.dylib");
+  }
+
+  if (Platform.isWindows) {
+    dylib = ffi.DynamicLibrary.open("target/debug/libplay_once.dll");
+  }
+
+  if (Platform.isLinux) {
+    dylib = ffi.DynamicLibrary.open("target/debug/libplay_once.so");
+  }
+
   // Get a reference to the C function, and put it into a variable. This code uses the typedefs defined in steps 2 and 3, along with the dynamic library variable from step 4.
   final PlayOnce play_once = dylib
       .lookup<ffi.NativeFunction<play_once_func>>('play_once')
